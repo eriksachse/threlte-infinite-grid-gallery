@@ -1,8 +1,15 @@
 <script>
   import { MeshStandardMaterial, SphereBufferGeometry } from "three";
-  import { Canvas, Mesh } from "@threlte/core";
+  import {
+    Canvas,
+    Mesh,
+    AmbientLight,
+    SpotLight,
+    DirectionalLight,
+  } from "@threlte/core";
   import Camera from "./Camera.svelte";
   import Element from "./Element.svelte";
+  import Environment from "./Environment.svelte";
 
   let dragged = { x: 0, y: 0 };
   let pointer = { down: false };
@@ -12,7 +19,7 @@
     { x: -1.2, y: -0.99 },
     { x: 0.05, y: -1.0 },
     { x: 1, y: -0.95 },
-    { x: -.95, y: -0.05 },
+    { x: -0.95, y: -0.05 },
     { x: 0, y: 0 },
     { x: 0.97, y: -0.1 },
     { x: -1, y: 0.9 },
@@ -44,7 +51,8 @@
   on:pointerdown={pointerdown}
 />
 <div>
-  <Canvas>
+  <Canvas
+    ><Environment />
     <Camera dragged={dragged} />
     {#each positions as _, i}
       <Element i={i + 1} _={_} dragged={dragged} />

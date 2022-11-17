@@ -1,3 +1,7 @@
-# vitejs-vite-2oqwh5
+# Threlte infinite grid gallery
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/vitejs-vite-2oqwh5)
+Threlte: https://github.com/threlte/threlte
+
+Preview: https://threlte-infinite-grid-gallery.vercel.app/
+
+![alt text](img.png)

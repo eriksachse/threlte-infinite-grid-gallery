@@ -1,6 +1,12 @@
 <script>
-  import { MeshStandardMaterial, SphereBufferGeometry } from "three";
-  import { Mesh, useFrame } from "@threlte/core";  import { get } from "svelte/store";
+  import {
+    CircleBufferGeometry,
+    MeshBasicMaterial,
+    MeshStandardMaterial,
+    SphereBufferGeometry,
+  } from "three";
+  import { Mesh, useFrame } from "@threlte/core";
+  import { get } from "svelte/store";
 
   import { Text } from "@threlte/extras";
   export let i, _;
@@ -8,7 +14,6 @@
   let distance = { x: 0, y: 0 };
   let arrayLength = 3;
   let loop = { x: 0, y: 0 };
-console.log(_)
   useFrame(({ camera }) => {
     distance.x = Math.round((-_.x + get(camera).position.x) / arrayLength);
     distance.y = Math.round((_.y - get(camera).position.y) / arrayLength);
@@ -28,11 +33,41 @@ console.log(_)
   castShadow
   geometry={new SphereBufferGeometry(0.4)}
   material={i === 1
-    ? new MeshStandardMaterial({ color: "red" })
+    ? new MeshStandardMaterial({
+        color: "#eb2d92",
+        roughness: 0,
+        envMapIntensity: 1,
+        emissive: "#b80966",
+      })
     : i === 4
-    ? new MeshStandardMaterial({ color: "blue" })
+    ? new MeshStandardMaterial({
+        color: "#7cb2d6",
+        roughness: 0,
+        envMapIntensity: 0.2,
+        emissive: "#213e52",
+      })
     : i === 8
-    ? new MeshStandardMaterial({ color: "green" })
-    : new MeshStandardMaterial({ color: "#333333" })}
+    ? new MeshStandardMaterial({
+        color: "black",
+        roughness: 0,
+        envMapIntensity: 0.8,
+        emissive: "#b80966",
+      })
+    : new MeshStandardMaterial({
+        color: "#4d9ae3",
+        roughness: 0,
+        envMapIntensity: 0.6,
+        emissive: "#b80966",
+      })}
 />
-<Text text={i} position={{ x: position.x, y: position.y }} color="black" />
+<Mesh
+  geometry={new CircleBufferGeometry(0.1, 24)}
+  material={new MeshBasicMaterial({ color: "white" })}
+  position={{ x: position.x, y: position.y, z: -0.01 }}
+/>
+
+<Text
+  text={i}
+  position={{ x: position.x - 0.02, y: position.y + 0.04 }}
+  color="black"
+/>

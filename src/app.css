@@ -1,4 +1,9 @@
 html,
 body {
   margin: 0px;
+  background: linear-gradient(
+    0deg,
+    rgba(248, 118, 102, 1) 0%,
+    rgba(162, 162, 162, 1) 100%
+  );
 }
