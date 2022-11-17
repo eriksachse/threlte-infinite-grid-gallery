@@ -43,12 +43,30 @@
     document.body.style.cursor = "grab";
     pointer.down = false;
   }
+  function touchstart(e) {
+    pointer.down = true;
+    pointerstart.x = e.touches[0].clientX + dragged.x;
+    pointerstart.y = e.touches[0].clientY + dragged.y;
+  }
+  function touchmove(e) {
+    if (pointer.down) {
+      console.log(e);
+      dragged.x = pointerstart.x - e.touches[0].clientX;
+      dragged.y = pointerstart.y - e.touches[0].clientY;
+    }
+  }
+  function touchend(e) {
+    pointer.down = false;
+  }
 </script>
 
 <svelte:window
   on:pointerup={pointerup}
   on:pointermove={pointermove}
   on:pointerdown={pointerdown}
+  on:touchend={touchend}
+  on:touchmove={touchmove}
+  on:touchstart={touchstart}
 />
 <div>
   <Canvas
